@@ -7,7 +7,14 @@ const init = async () => {
     host: "localhost",
   });
 
-  server.route(routes);
+  server.route({
+    method: 'GET',
+    path: '/users/{username?}',
+    handler: (request, h) => {
+        const { username = 'stranger' } = request.params;    
+        return `Hello, ${username}!`;
+    },
+});
 
   await server.start();
   console.log(`Server berjalan pada ${server.info.uri}`);
