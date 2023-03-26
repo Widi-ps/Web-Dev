@@ -4,12 +4,13 @@
         "commonjs": true,
         "es2021": true
     },
-    "extends": "google",
+    "extends": "airbnb",
     "overrides": [
     ],
     "parserOptions": {
         "ecmaVersion": "latest"
     },
     "rules": {
+        "no-console": "off"
     }
 }
