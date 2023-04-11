@@ -1,1 +1,1 @@
-console.log("Kita akan membuat Bookshelf API dari Dicoding");
+console.log('Kita akan membuat Bookshelf API dari Dicoding');
