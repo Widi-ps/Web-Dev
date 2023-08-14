@@ -20,6 +20,11 @@
     <!-- List goes here if current second is even. -->
     <!-- Otherwise it should display the following: -->
     <!-- <p>No items to display</p> -->
+    <% items.forEach((fruit) => { %>
+      <li>
+        <%= fruit %>
+      </li>
+      <% }); %>
   </ul>
   <% } else { %>
   <p>No items to display</p>
