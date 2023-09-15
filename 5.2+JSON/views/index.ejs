@@ -32,7 +32,9 @@
         </li>
         <li>
           <% recipe.ingredients.toppings.forEach(toppings => { %>
-            <%= toppings.quantity %>, <%= toppings.name %>
+            <li>
+              <%= toppings.quantity %> of <%= toppings.name %>
+            </li>
           <% }) %>
         </li>
       </ul>
