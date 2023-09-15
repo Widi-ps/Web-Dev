@@ -28,11 +28,10 @@
         <li>
           <%= recipe.ingredients.protein.name %>, <%= recipe.ingredients.protein.preparation %>
         </li>
-        
         <li>
           <%= recipe.ingredients.salsa.name %>
-        </li>
 
+        </li>
         <% recipe.ingredients.toppings.forEach(topping=> { %>
           <li>
             <%= topping.quantity %> of <%= topping.name %>
