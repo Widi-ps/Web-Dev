@@ -34,30 +34,33 @@
       <button type="submit" class="form-submit">Go</button>
     </form>
     <section id="cards" class="cards">
-      <article class="card-item">
-        <h2 class="card-activity">
-          <!-- Show Activity -->
-          <%= locals.data.activity %>
-        </h2>
-        <div class="card-info">
-          <span class="card-type">
-            <!-- Show Activity type -->
-            <%= locals.data.type %>
-          </span>
-          <span class="card-participants">
-            <!-- participants: Show participant number -->
-            <span class="card-number">
-              <%= locals.data.participants %>
-
+      <% if (locals.data) { %>
+        <article class="card-item">
+          <h2 class="card-activity">
+            <!-- Show Activity -->
+            <%= data.activity %>
+          </h2>
+          <div class="card-info">
+            <span class="card-type">
+              <!-- Show Activity type -->
+              <%= data.type %>
             </span>
-          </span>
-        </div>
-      </article>
+            <span class="card-participants">
+              <!-- participants: Show participant number -->
+              participants: <%= data.participants %>
+              <span class="card-number"></span>
+            </span>
+          </div>
+        </article>
+      <% } %>
 
 
-      <div id="tag-error" class="tag-error">
-        <!-- Show any errors that were sent from the backend -->
-      </div>
+        <% if (locals.error) { %>
+          <div id="tag-error" class="tag-error">
+            <!-- Show any errors that were sent from the backend -->
+            <%= error %>
+          </div>
+        <% } %>
 
     </section>
   </div>
