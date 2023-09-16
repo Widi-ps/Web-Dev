@@ -50,7 +50,7 @@ app.post("/", async (req, res) => {
     // "No activities that match your criteria."
     console.log("Failed to make request: ", error.message);
     res.render("index.ejs", {
-      error: "No activities that match your criteria,",
+      error: "No activities that match your criteria",
     });
   }
 
