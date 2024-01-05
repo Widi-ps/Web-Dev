@@ -40,19 +40,19 @@ app.post("/jokes", (req, res) => {
 });
 
 //5. PUT a joke
-app.put("/jokes/:id", (req,res) => {
-  const id = parseInt(req.params.id)
+app.put("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
   const replacementJokes = {
     id: id,
     text: req.body.text,
     type: req.body.type,
-  }
+  };
 
-  const index = jokes.find((joke) => joke.id === id)
+  const index = jokes.findIndex((joke) => joke.id === id);
 
   jokes[index] = replacementJokes;
-  res.json(replacementJokes)
-})
+  res.json(replacementJokes);
+});
 
 //6. PATCH a joke
 
