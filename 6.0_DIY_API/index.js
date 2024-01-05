@@ -14,21 +14,30 @@ app.get("/random", (req, res) => {
 });
 
 //2. GET" a specific joke
-app.get("/jokes/:id", (req,res) => {
-  const id = parseInt(req.params.id)
-  const foundJoke = jokes.find((joke) => joke.id === id)
-  res.json(foundJoke)
-})
+app.get("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const foundJoke = jokes.find((joke) => joke.id === id);
+  res.json(foundJoke);
+});
 
 //3. GET a jokes by filtering on the joke type
-app.get("/filter", (req,res) => {
-  const type = req.query.type
-  const filteredJoke = jokes.find((joke) => joke.jokeType === type)
-  res.json(filteredJoke)
-})
+app.get("/filter", (req, res) => {
+  const type = req.query.type;
+  const filteredJoke = jokes.find((joke) => joke.jokeType === type);
+  res.json(filteredJoke);
+});
 
 //4. POST a new joke
-
+app.post("/jokes", (req, res) => {
+  const newJoke = {
+    id: jokes.length + 1,
+    text: req.body.text,
+    type: req.body.type,
+  };
+  jokes.push(newJoke);
+  console.log(jokes.slice(-1));
+  res.json(newJoke);
+});
 
 //5. PUT a joke
 
