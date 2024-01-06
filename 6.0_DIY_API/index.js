@@ -89,7 +89,7 @@ app.delete("/all", (req, res) => {
   const userKey = req.query.key;
   if (userKey === masterKey) {
     jokes = [];
-    res.status(200).json({
+    res.sendStatus(200).json({
       message: `All jokes deleted successfully`,
     });
   } else {
