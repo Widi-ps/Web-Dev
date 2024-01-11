@@ -44,16 +44,19 @@ app.get("/", async (req, res) => {
   await nextQuestion();
   console.log(currentQuestion);
   res.render("index.ejs", { question: currentQuestion });
+  // console.log(.toLowerCase());
 });
 
 // POST a new post
 app.post("/submit", (req, res) => {
   let answer = req.body.answer.trim();
   let isCorrect = false;
-  if (currentQuestion.capital.toLowerCase() === answer.toLowerCase()) {
+  let correctCapital = currentQuestion.capital.toLowerCase()
+  if (correctCapital === answer.toLowerCase()) {
     totalCorrect++;
     console.log(totalCorrect);
     isCorrect = true;
+    correctCapital = correctCapital.toUpperCase()
   }
 
   nextQuestion();
@@ -61,6 +64,7 @@ app.post("/submit", (req, res) => {
     question: currentQuestion,
     wasCorrect: isCorrect,
     totalScore: totalCorrect,
+    correctAnswer: correctCapital,
   });
 });
 
