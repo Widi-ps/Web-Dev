@@ -51,8 +51,8 @@ app.get("/", async (req, res) => {
 app.post("/submit", (req, res) => {
   let answer = req.body.answer.trim();
   let isCorrect = false;
-  let correctCapital = currentQuestion.capital.toLowerCase()
-  if (correctCapital === answer.toLowerCase()) {
+  let correctCapital = properCase(currentQuestion.capital)
+    if (correctCapital.toLowerCase() === answer.toLowerCase()) {
     totalCorrect++;
     console.log(totalCorrect);
     isCorrect = true;
