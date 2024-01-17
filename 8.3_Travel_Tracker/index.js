@@ -53,6 +53,9 @@ app.post("/add", async (req, res) => {
       countryCode,
     ]);
     res.redirect("/");
+  } else {
+    console.log(`Country with name '${input}' not found`);
+    res.redirect("/")
   }
 });
 
