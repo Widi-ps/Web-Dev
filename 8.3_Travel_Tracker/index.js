@@ -11,15 +11,24 @@ const db = new pg.Client({
   database: "world",
   password: "widi",
   port: 5432,
-})
+});
 
-db.connect()
+db.connect();
+
+// let countries = []
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
   //Write your code here.
+  const result = await db.query("SELECT country_code FROM visited_country");
+  let countries = [];
+  result.rows.forEach((country) => {
+    countries.push(country.country_code);
+  });
+  console.log(result.rows);
+  res.render("index.ejs", { countries: countries, total: countries.length});
 });
 
 app.listen(port, () => {
