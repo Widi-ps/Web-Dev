@@ -10,10 +10,10 @@ const db = new pg.Client({
   host: "localhost",
   database: "Permalist",
   password: "widi",
-  port: 5432
-})
+  port: 5432,
+});
 
-db.connect()
+db.connect();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -30,10 +30,16 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/add", (req, res) => {
+app.post("/add", async (req, res) => {
   const item = req.body.newItem;
-  items.push({ title: item });
-  res.redirect("/");
+  console.log(item);
+  // items.push({ title: item });
+  try {
+    await db.query("INSERT INTO items (title) VALUES ($1)", [item]);
+    res.redirect("/");
+  } catch (error) {
+    console.log(err);
+  }
 });
 
 app.post("/edit", (req, res) => {});
