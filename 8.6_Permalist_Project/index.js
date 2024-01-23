@@ -50,9 +50,20 @@ app.post("/add", async (req, res) => {
   }
 });
 
-app.post("/edit", (req, res) => {});
+app.post("/edit", async (req, res) => {
+  const item = req.body.updatedItemTitle;
+  const id = req.body.updatedItemId;
+  console.log(item, id);
 
-app.post("/delete", (req, res) => {});
+  try {
+    await db.query("UPDATE items SET title = ($1) WHERE id = $2", [item, id]);
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.post("/delete", async (req, res) => {});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
