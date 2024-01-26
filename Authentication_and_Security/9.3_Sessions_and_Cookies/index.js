@@ -18,6 +18,9 @@ app.use(
     secret: "TOPSECRETWORD",
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
   })
 );
 
@@ -129,8 +132,8 @@ passport.serializeUser((user, cb) => {
 });
 
 passport.deserializeUser((user, cb) => {
-  cb(null, user)
-})
+  cb(null, user);
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
