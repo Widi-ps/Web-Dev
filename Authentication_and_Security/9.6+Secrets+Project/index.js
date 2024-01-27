@@ -70,7 +70,7 @@ app.get("/secrets", async (req, res) => {
       if (secret) {
         res.render("secrets.ejs", { secret: secret });
       } else {
-        res.render("secrets.js", { secret: "Jack Bauer is my hero." });
+        res.render("secrets.ejs", { secret: "Jack Bauer is my hero." });
       }
     } catch (error) {
       console.log(error);
@@ -82,6 +82,13 @@ app.get("/secrets", async (req, res) => {
 
 //TODO: Add a get route for the submit button
 //Think about how the logic should work with authentication.
+app.get("/submit", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render("submit.ejs");
+  } else {
+    res.redirect("/login");
+  }
+});
 
 app.get(
   "/auth/google",
