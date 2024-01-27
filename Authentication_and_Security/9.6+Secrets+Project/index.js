@@ -56,11 +56,25 @@ app.get("/logout", (req, res) => {
   });
 });
 
-app.get("/secrets", (req, res) => {
+app.get("/secrets", async (req, res) => {
+  console.log(req.user);
   if (req.isAuthenticated()) {
-    res.render("secrets.ejs");
-
     //TODO: Update this to pull in the user secret to render in secrets.ejs
+    try {
+      const result = await db.query(
+        "SELECT secret FROM users WHERE email = $1",
+        [req.user.email]
+      );
+      console.log(result.rows[0].secret);
+      const secret = result.rows[0].secret;
+      if (secret) {
+        res.render("secrets.ejs", { secret: secret });
+      } else {
+        res.render("secrets.js", { secret: "Jack Bauer is my hero." });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   } else {
     res.redirect("/login");
   }
