@@ -153,12 +153,12 @@ app.post("/submit", async (req, res) => {
   console.log(req.user);
   console.log(updatedSecret);
 
-  try {
+  try { 
     await db.query("UPDATE users SET secret = $1 WHERE email = $2", [
       updatedSecret,
       req.user.email,
     ]);
-    res.redirect("/secrets")
+    res.redirect("/secrets");
   } catch (error) {
     console.log(error);
   }
